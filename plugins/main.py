@@ -1,5 +1,5 @@
 import pyrogram
-from pyrogram import Client
+from pyrogram import Client as app
 from pyrogram import filters
 import bypasser
 import os
@@ -8,10 +8,10 @@ import requests
 import threading
 
 # bot
-bot_token = os.environ.get("BOT_TOKEN", "")
-api_hash = os.environ.get("API_HASH", "") 
-api_id = os.environ.get("API_ID", "")
-app = Client("my_bot",api_id=api_id, api_hash=api_hash,bot_token=bot_token)  
+#bot_token = os.environ.get("BOT_TOKEN", "")
+#api_hash = os.environ.get("API_HASH", "") 
+#api_id = os.environ.get("API_ID", "")
+#app = Client("my_bot",api_id=api_id, api_hash=api_hash,bot_token=bot_token)  
 
 # ENVs
 GDTot_Crypt = os.environ.get("GD_CRYPT","")

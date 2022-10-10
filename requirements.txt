@@ -10,3 +10,10 @@ shortzy
 aiofiles
 validators
 python-dotenv
+
+requests
+cloudscraper
+python-dotenv
+lxml
+lk21
+cfscrape

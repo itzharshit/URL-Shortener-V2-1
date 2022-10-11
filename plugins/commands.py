@@ -445,6 +445,7 @@ async def get_user_info_handler(c: Client, m: Message):
 
 ###############################CLONER###########################
 @Client.on_message(filters.private & filters.command("clone"))
+@private_use
 async def clone(c: Client, m: Message):
     chat = m.chat
     text = await m.reply("Send /clone with your bot token.\nYou can get your bot token from @botfather\n\ne.g. `/clone bot_token`.")

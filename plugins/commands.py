@@ -14,7 +14,17 @@ from pyrogram.types import Message
 from plugins.filters import private_use
 from translation import *
 from utils import extract_link, get_me_button, get_size, getHerokuDetails
-
+#cloner
+from config import API_ID, API_HASH, BOT_TOKEN
+from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton, InlineQuery, InlineQueryResultArticle, \
+    InputTextMessageContent
+import os
+import re
+import asyncio
+import time
+from pyrogram import *
+from pyrogram.types import *
+#end cloner
 logger = logging.getLogger(__name__)
 
 user_commands = ["mdisk_api", "shortener_api", "header", "footer", "username", "banner_image", "base_site", "me"]
@@ -431,3 +441,23 @@ async def get_user_info_handler(c: Client, m: Message):
     except Exception as e:
         await m.reply_text(e)
         logging.error(e)
+
+
+###############################CLONER###########################
+@Client.on_message(filters.private & filters.command("clone"))
+async def clone(c: Client, m: Message):
+    chat = m.chat
+    text = await m.reply("Send /clone with your bot token.\nYou can get your bot token from @botfather\n\ne.g. `/clone bot_token`.")
+    cmd = m.command
+    phone = m.command[1]
+    try:
+        await text.edit("⏳ Starting your bot.")
+                   # change this Directry according to ur repo
+        client = Client(":memory:", API_ID, API_HASH, bot_token=phone, plugins={"root": "plugins"})
+        await client.start()
+        idle()
+        user = await client.get_me()
+        await text.edit(f"Successfully started your bot.",reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Start Bot", url=f"https://t.me/{user.username}")]]))
+    except Exception as e:
+        print(e) 
+        await text.edit(f"An error occurred, please check your BOT_TOKEN")
